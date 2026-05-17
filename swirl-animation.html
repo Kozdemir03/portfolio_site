@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swirl Animation</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #050508;
+    overflow: hidden;
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    cursor: none;
+  }
+
+  canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+  }
+
+  .cursor {
+    position: fixed;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    mix-blend-mode: difference;
+    transition: transform 0.1s ease;
+  }
+
+  .cursor-ring {
+    position: fixed;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.3);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    transition: all 0.15s ease;
+  }
+
+  .ui {
+    position: fixed;
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  .nav {
+    top: 40px; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .nav span {
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .nav span.logo {
+    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+  }
+
+  .hero {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 200;
+    color: rgba(255,255,255,0.92);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 strong {
+    font-weight: 600;
+    background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 40%, #34d399 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  .bottom-bar {
+    bottom: 40px; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .bottom-bar .stat {
+    text-align: center;
+  }
+
+  .bottom-bar .stat-num {
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    display: block;
+    letter-spacing: -0.02em;
+  }
+
+  .bottom-bar .stat-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 4px;
+  }
+
+  .scroll-hint {
+    bottom: 40px; right: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .scroll-hint span {
+    font-size: 10px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.25), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 0.8; transform: scaleY(1.1); }
+  }
+
+  .badge {
+    position: fixed;
+    top: 40px; right: 48px;
+    z-index: 100;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #34d399;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .badge span {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav class="ui nav">
+  <span>Studio</span>
+  <span class="logo">SWIRL</span>
+  <span>Work</span>
+</nav>
+
+<div class="ui hero">
+  <h1>Motion<br><strong>Reimagined</strong></h1>
+  <p>Move your cursor to explore</p>
+</div>
+
+<div class="ui bottom-bar">
+  <div class="stat">
+    <span class="stat-num">360°</span>
+    <span class="stat-label">Rotation</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">∞</span>
+    <span class="stat-label">Particles</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">60fps</span>
+    <span class="stat-label">Render</span>
+  </div>
+</div>
+
+<div class="ui scroll-hint">
+  <div class="scroll-line"></div>
+  <span>Scroll</span>
+</div>
+
+<div class="badge">
+  <div class="badge-dot"></div>
+  <span>Live</span>
+</div>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d', { alpha: false });
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+
+let W = canvas.width = window.innerWidth;
+let H = canvas.height = window.innerHeight;
+
+let mouse = { x: W / 2, y: H / 2, vx: 0, vy: 0, px: W / 2, py: H / 2 };
+let targetMouse = { x: W / 2, y: H / 2 };
+
+window.addEventListener('resize', () => {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+  rebuildOrbGradients();
+});
+
+window.addEventListener('mousemove', (e) => {
+  targetMouse.x = e.clientX;
+  targetMouse.y = e.clientY;
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  cursorRing.style.left = e.clientX + 'px';
+  cursorRing.style.top = e.clientY + 'px';
+});
+
+// Palettes — hex strings pre-parsed into r,g,b for fast rendering
+const palettes = [
+  [[167,139,250],[129,140,248],[96,165,250],[52,211,153]],
+  [[244,114,182],[192,132,252],[129,140,248],[96,165,250]],
+  [[52,211,153],[96,165,250],[167,139,250],[244,114,182]],
+  [[251,191,36],[244,114,182],[192,132,252],[96,165,250]],
+];
+const paletteHex = [
+  ['#a78bfa','#818cf8','#60a5fa','#34d399'],
+  ['#f472b6','#c084fc','#818cf8','#60a5fa'],
+  ['#34d399','#60a5fa','#a78bfa','#f472b6'],
+  ['#fbbf24','#f472b6','#c084fc','#60a5fa'],
+];
+
+let currentPalette = 0;
+let paletteTimer = 0;
+
+// ── Particles stored in flat typed arrays for cache efficiency ──
+const COUNT = 600;
+const px   = new Float32Array(COUNT);
+const py   = new Float32Array(COUNT);
+const pvx  = new Float32Array(COUNT);
+const pvy  = new Float32Array(COUNT);
+const plife= new Float32Array(COUNT);
+const pmaxL= new Float32Array(COUNT);
+const psize= new Float32Array(COUNT);
+const pspd = new Float32Array(COUNT);
+const palph= new Float32Array(COUNT);
+const pcol = new Uint8Array(COUNT);  // colorIdx 0-3
+const ppal = new Uint8Array(COUNT);  // paletteIdx
+
+function resetParticle(i) {
+  const angle = Math.random() * Math.PI * 2;
+  const dist  = Math.random() * Math.min(W, H) * 0.5;
+  px[i]   = W / 2 + Math.cos(angle) * dist;
+  py[i]   = H / 2 + Math.sin(angle) * dist;
+  pvx[i]  = 0; pvy[i] = 0;
+  plife[i]= Math.random() * 0.3;
+  pmaxL[i]= 0.6 + Math.random() * 0.4;
+  psize[i]= 0.8 + Math.random() * 2.2;
+  pspd[i] = 0.4 + Math.random() * 1.1;
+  palph[i]= 0;
+  pcol[i] = Math.floor(Math.random() * 4);
+  ppal[i] = currentPalette;
+}
+for (let i = 0; i < COUNT; i++) resetParticle(i);
+
+// ── Trails — fewer points, drawn as one smooth path ──
+const TRAIL_COUNT = 10;
+const MAX_PTS = 60;
+const trailX   = Array.from({length: TRAIL_COUNT}, () => new Float32Array(MAX_PTS));
+const trailY   = Array.from({length: TRAIL_COUNT}, () => new Float32Array(MAX_PTS));
+const trailLen = new Uint8Array(TRAIL_COUNT);
+const trailPtr = new Uint8Array(TRAIL_COUNT); // ring-buffer head
+const trailCol = new Uint8Array(TRAIL_COUNT);
+const trailPal = new Uint8Array(TRAIL_COUNT);
+const trailOff = new Float32Array(TRAIL_COUNT);
+const trailPhs = new Float32Array(TRAIL_COUNT);
+const trailSpd = new Float32Array(TRAIL_COUNT);
+const trailW   = new Float32Array(TRAIL_COUNT);
+for (let i = 0; i < TRAIL_COUNT; i++) {
+  trailCol[i] = Math.floor(Math.random() * 4);
+  trailPal[i] = currentPalette;
+  trailOff[i] = (Math.random() - 0.5) * 80;
+  trailPhs[i] = Math.random() * Math.PI * 2;
+  trailSpd[i] = 0.5 + Math.random() * 0.7;
+  trailW[i]   = 0.6 + Math.random() * 1.2;
+}
+
+// ── Orbs — gradient cached, only recomputed on move ──
+const ORB_COUNT = 5;
+const orbX  = new Float32Array(ORB_COUNT);
+const orbY  = new Float32Array(ORB_COUNT);
+const orbR  = new Float32Array(ORB_COUNT);
+const orbVx = new Float32Array(ORB_COUNT);
+const orbVy = new Float32Array(ORB_COUNT);
+const orbA  = new Float32Array(ORB_COUNT);
+const orbCol= new Uint8Array(ORB_COUNT);
+let orbGrads = [];
+
+function rebuildOrbGradients() {
+  orbGrads = [];
+  for (let i = 0; i < ORB_COUNT; i++) {
+    const hex = paletteHex[currentPalette][orbCol[i]];
+    const g = ctx.createRadialGradient(orbX[i], orbY[i], 0, orbX[i], orbY[i], orbR[i]);
+    g.addColorStop(0, hex + 'bb');
+    g.addColorStop(1, hex + '00');
+    orbGrads[i] = g;
+  }
+}
+for (let i = 0; i < ORB_COUNT; i++) {
+  orbX[i]  = Math.random() * W;
+  orbY[i]  = Math.random() * H;
+  orbR[i]  = 80 + Math.random() * 160;
+  orbVx[i] = (Math.random() - 0.5) * 0.25;
+  orbVy[i] = (Math.random() - 0.5) * 0.25;
+  orbA[i]  = 0.025 + Math.random() * 0.05;
+  orbCol[i]= Math.floor(Math.random() * 4);
+}
+rebuildOrbGradients();
+
+// ── Main loop ──
+let t = 0;
+let orbGradDirty = false;
+
+function animate() {
+  requestAnimationFrame(animate);
+  t += 0.016;
+
+  // Smooth mouse
+  mouse.px = mouse.x;
+  mouse.py = mouse.y;
+  mouse.x += (targetMouse.x - mouse.x) * 0.12;
+  mouse.y += (targetMouse.y - mouse.y) * 0.12;
+
+  // Palette cycle
+  if (++paletteTimer > 320) {
+    paletteTimer = 0;
+    currentPalette = (currentPalette + 1) % palettes.length;
+    for (let i = 0; i < COUNT; i++) if (Math.random() < 0.08) ppal[i] = currentPalette;
+    for (let i = 0; i < TRAIL_COUNT; i++) trailPal[i] = currentPalette;
+    orbGradDirty = true;
+  }
+
+  // ── Background fade (motion blur) ──
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = 'rgba(5,5,8,0.20)';
+  ctx.fillRect(0, 0, W, H);
+
+  // ── Orbs ──
+  ctx.globalCompositeOperation = 'screen';
+  if (orbGradDirty) { rebuildOrbGradients(); orbGradDirty = false; }
+  for (let i = 0; i < ORB_COUNT; i++) {
+    orbX[i] += orbVx[i]; orbY[i] += orbVy[i];
+    if (orbX[i] < -orbR[i]) orbX[i] = W + orbR[i];
+    if (orbX[i] > W + orbR[i]) orbX[i] = -orbR[i];
+    if (orbY[i] < -orbR[i]) orbY[i] = H + orbR[i];
+    if (orbY[i] > H + orbR[i]) orbY[i] = -orbR[i];
+    orbVx[i] *= 0.99; orbVy[i] *= 0.99;
+    ctx.globalAlpha = orbA[i];
+    ctx.fillStyle = orbGrads[i];
+    ctx.beginPath();
+    ctx.arc(orbX[i], orbY[i], orbR[i], 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // ── Trails — one path per trail, no shadowBlur ──
+  ctx.globalCompositeOperation = 'screen';
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  for (let i = 0; i < TRAIL_COUNT; i++) {
+    const angle = t * trailSpd[i] + trailPhs[i];
+    const nx = mouse.x + Math.cos(angle) * trailOff[i];
+    const ny = mouse.y + Math.sin(angle * 1.4) * trailOff[i];
+    const ptr = trailPtr[i];
+    trailX[i][ptr] = nx;
+    trailY[i][ptr] = ny;
+    trailPtr[i] = (ptr + 1) % MAX_PTS;
+    if (trailLen[i] < MAX_PTS) trailLen[i]++;
+
+    const len = trailLen[i];
+    if (len < 4) continue;
+    const color = paletteHex[trailPal[i]][trailCol[i]];
+    ctx.strokeStyle = color;
+    ctx.beginPath();
+    // Walk ring buffer in chronological order
+    const start = (trailPtr[i] - len + MAX_PTS) % MAX_PTS;
+    ctx.moveTo(trailX[i][start], trailY[i][start]);
+    for (let j = 1; j < len; j++) {
+      const idx = (start + j) % MAX_PTS;
+      ctx.lineTo(trailX[i][idx], trailY[i][idx]);
+    }
+    ctx.globalAlpha = 0.35;
+    ctx.lineWidth = trailW[i];
+    ctx.stroke();
+  }
+
+  // ── Particles — batched by color to minimise fillStyle changes ──
+  ctx.globalCompositeOperation = 'screen';
+  // Update all particles
+  for (let i = 0; i < COUNT; i++) {
+    const dx = mouse.x - px[i];
+    const dy = mouse.y - py[i];
+    const d2 = dx * dx + dy * dy;
+    const dist = Math.sqrt(d2) + 1;
+    const force = 100 / dist;
+    const sa = Math.atan2(dy, dx) + 1.5708; // +PI/2
+    pvx[i] += Math.cos(sa) * force * 0.07 + (Math.random() - 0.5) * 0.15;
+    pvy[i] += Math.sin(sa) * force * 0.07 + (Math.random() - 0.5) * 0.15;
+    pvx[i] += dx * 0.0008;
+    pvy[i] += dy * 0.0008;
+    pvx[i] *= 0.95; pvy[i] *= 0.95;
+    px[i] += pvx[i] * pspd[i];
+    py[i] += pvy[i] * pspd[i];
+    plife[i] += 0.005;
+    if (plife[i] > pmaxL[i]) {
+      palph[i] -= 0.04;
+      if (palph[i] <= 0) resetParticle(i);
+    } else {
+      palph[i] = Math.min(palph[i] + 0.025, 0.75);
+    }
+    if (px[i] < -80 || px[i] > W + 80 || py[i] < -80 || py[i] > H + 80) resetParticle(i);
+  }
+
+  // Draw — batch by (palette, colorIdx) — only 4 fillStyle calls per palette
+  const TWO_PI = Math.PI * 2;
+  for (let c = 0; c < 4; c++) {
+    const [r,g,b] = palettes[currentPalette][c];
+    ctx.fillStyle = `rgb(${r},${g},${b})`;
+    ctx.beginPath();
+    for (let i = 0; i < COUNT; i++) {
+      if (pcol[i] !== c || palph[i] <= 0) continue;
+      ctx.globalAlpha = palph[i];
+      ctx.moveTo(px[i] + psize[i], py[i]);
+      ctx.arc(px[i], py[i], psize[i], 0, TWO_PI);
+    }
+    ctx.fill();
+  }
+
+  // ── Mouse glow ──
+  ctx.globalCompositeOperation = 'screen';
+  const pal = palettes[currentPalette];
+  const [mr,mg,mb] = pal[0];
+  const mGrad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 90);
+  mGrad.addColorStop(0, `rgba(${mr},${mg},${mb},0.25)`);
+  mGrad.addColorStop(1, `rgba(${mr},${mg},${mb},0)`);
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = mGrad;
+  ctx.beginPath();
+  ctx.arc(mouse.x, mouse.y, 90, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.globalAlpha = 1;
+}
+
+window.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  targetMouse.x = e.touches[0].clientX;
+  targetMouse.y = e.touches[0].clientY;
+}, { passive: false });
+
+animate();
+</script>
+</body>
+</html>
