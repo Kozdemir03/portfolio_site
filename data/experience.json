@@ -1,0 +1,42 @@
+[
+  {
+    "id": "esbas",
+    "company": "E.S.B.A.S.",
+    "role": "Software Developer Intern",
+    "period": "Jan 2026 – Feb 2026",
+    "type": "Internship",
+    "accent": "accent",
+    "bullets": [
+      "Built an AI-integrated chatbot that processes receipt images via OCR, converts extracted data to JSON, and auto-records entries in Excel — eliminating manual data entry.",
+      "Implemented a live camera viewer using the Hikvision SDK to display and capture real-time streams."
+    ],
+    "tags": ["Python", "OCR", "Hikvision SDK", "Excel Automation"]
+  },
+  {
+    "id": "unity-freelance",
+    "company": "Independent",
+    "role": "Unity Game Developer (Freelance)",
+    "period": "Jun 2025 – Present",
+    "type": "Freelance",
+    "accent": "accent2",
+    "bullets": [
+      "Designing and developing 3 mobile games with Unity targeting iOS and Android.",
+      "Covering mechanics, UI systems, and full development lifecycle from concept to testing."
+    ],
+    "tags": ["Unity", "C#", "iOS", "Android", "Mobile Games"]
+  },
+  {
+    "id": "f1proje",
+    "company": "F1Proje",
+    "role": "Junior Software Developer",
+    "period": "Oct 2024 – Apr 2025",
+    "type": "Part-time",
+    "accent": "amber",
+    "bullets": [
+      "Developed KampYeri — a full-stack reservation platform for campsites, hotels, and caravan areas, including a business management system for dynamic listings.",
+      "Designed SQL schema, integrated data access with ASP.NET and LINQ, and built modules for user registration, business profiles, and an admin dashboard.",
+      "Built a responsive Bootstrap frontend and developed a standalone admin panel for a separate existing web application using C#, LINQ, and SQL."
+    ],
+    "tags": ["C#", "ASP.NET", "SQL", "LINQ", "Bootstrap"]
+  }
+]

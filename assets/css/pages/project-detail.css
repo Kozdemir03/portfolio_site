@@ -1,0 +1,117 @@
+/* ── PROJECT DETAIL PAGE ─────────────────── */
+.proj-detail { padding-top: 7rem; }
+
+/* Hero banner */
+.pd-hero {
+  min-height: 55vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 6rem 5% 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.pd-hero-bg {
+  position: absolute;
+  inset: 0;
+  opacity: .85;
+  transition: opacity var(--tr-slow);
+}
+.pd-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+.pd-hero .hero-badge { margin-bottom: 1.5rem; }
+.pd-emoji {
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+.pd-title {
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -.04em;
+  color: #fff;
+  margin-bottom: .75rem;
+  text-shadow: 0 2px 20px rgba(0,0,0,.4);
+}
+.pd-subtitle {
+  font-size: var(--fs-xl);
+  color: rgba(255,255,255,.75);
+  margin-bottom: 2rem;
+}
+.pd-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+
+/* Sections */
+.pd-section { padding: 4rem 5%; }
+.pd-section-title {
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  margin-bottom: 1.5rem;
+}
+.pd-text {
+  color: var(--muted);
+  font-size: var(--fs-lg);
+  line-height: 1.85;
+  max-width: 760px;
+}
+.pd-text + .pd-text { margin-top: 1rem; }
+
+/* Two-col layout */
+.pd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+@media (max-width: 768px) { .pd-grid { grid-template-columns: 1fr; } }
+
+/* Bullets */
+.pd-bullets { list-style: none; }
+.pd-bullets li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: .75rem;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.pd-bullets li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent-l);
+}
+
+/* Stack chips */
+.pd-stack { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
+.pd-chip {
+  padding: .5rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text);
+  transition: border-color var(--tr-slow), background var(--tr-slow);
+}
+.pd-chip:hover {
+  border-color: var(--border-h);
+  color: var(--accent-l);
+}
+
+/* CTA row */
+.pd-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 3rem 5%;
+  border-top: 1px solid var(--border);
+}
+
+/* Back link */
+.pd-back {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: var(--fs-sm);
+  color: var(--muted);
+  transition: color var(--tr-base);
+  padding: 2rem 5% 0;
+}
+.pd-back:hover { color: var(--accent-l); }

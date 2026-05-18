@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Font-Specific OCR — Kaan Özdemir</title>
+<meta name="description" content="Lightweight CNN-based OCR system targeting specific fonts using Python, OpenCV, PyTorch, and ONNX Runtime.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/00-reset.css">
+<link rel="stylesheet" href="../assets/css/01-tokens.css">
+<link rel="stylesheet" href="../assets/css/02-themes.css">
+<link rel="stylesheet" href="../assets/css/03-base.css">
+<link rel="stylesheet" href="../assets/css/04-layout.css">
+<link rel="stylesheet" href="../assets/css/05-cursor.css">
+<link rel="stylesheet" href="../assets/css/06-animations.css">
+<link rel="stylesheet" href="../assets/css/components/navbar.css">
+<link rel="stylesheet" href="../assets/css/components/button.css">
+<link rel="stylesheet" href="../assets/css/components/footer.css">
+<link rel="stylesheet" href="../assets/css/pages/project-detail.css">
+<style>
+  body { cursor: none; }
+  .pd-hero-bg { background: linear-gradient(135deg,#1c0a2e,#44106a,#6d28d9); }
+  .dev-notice {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: color-mix(in srgb, var(--amber) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--amber) 30%, transparent);
+    color: var(--amber);
+    padding: .5rem 1.2rem; border-radius: 99px;
+    font-size: .78rem; font-weight: 600; letter-spacing: .08em;
+    margin-bottom: 1.5rem;
+  }
+</style>
+</head>
+<body>
+<canvas id="swirl-canvas"></canvas>
+<div class="cur-dot" id="cdot"></div>
+<div class="cur-ring" id="cring"></div>
+
+<nav class="navbar" id="navbar">
+  <a href="../index.html" class="logo">K.</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Work</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <button class="ttog" id="ttog" aria-label="Toggle theme">☀️</button>
+  </div>
+</nav>
+
+<main class="proj-detail">
+  <a href="../index.html#projects" class="pd-back rv">← Back to all projects</a>
+
+  <div class="pd-hero rv">
+    <div class="pd-hero-bg"></div>
+    <div class="pd-hero-content">
+      <div class="dev-notice">⚙ In Development</div>
+      <span class="pd-emoji">🔬</span>
+      <h1 class="pd-title">Font-Specific OCR</h1>
+      <p class="pd-subtitle">Lightweight CNN-based character recognition system</p>
+      <div class="pd-tags">
+        <span class="tag ta">Python</span>
+        <span class="tag tc">OpenCV</span>
+        <span class="tag tv">PyTorch</span>
+        <span class="tag tr">ONNX Runtime</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="pd-section rv">
+    <div class="pd-grid">
+      <div>
+        <h2 class="pd-section-title">Motivation</h2>
+        <p class="pd-text">
+          General-purpose OCR engines (Tesseract, EasyOCR) are large, slow, and
+          overengineered for documents where the font is known in advance — such
+          as internal reports, invoices, or scanned books. This project takes a
+          narrower approach: train a small CNN specifically on a handful of common
+          fonts and deploy it with a fraction of the resource cost.
+        </p>
+      </div>
+      <div>
+        <h2 class="pd-section-title">Target Fonts</h2>
+        <ul class="pd-bullets">
+          <li>Times New Roman</li>
+          <li>Arial</li>
+          <li>Georgia</li>
+          <li>(extensible to additional fonts by regenerating the synthetic dataset)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="pd-section rv" style="background:color-mix(in srgb,var(--surface) 60%,transparent)">
+    <h2 class="pd-section-title">Processing Pipeline</h2>
+    <ul class="pd-bullets">
+      <li><strong>Pre-processing:</strong> OpenCV converts the input image to greyscale, applies adaptive thresholding, and runs contour detection to locate character bounding boxes.</li>
+      <li><strong>Segmentation:</strong> bounding boxes are filtered (area thresholds) to remove noise, then sorted left-to-right and top-to-bottom for correct reading order.</li>
+      <li><strong>Classification:</strong> each 32 × 32 cropped bounding box is passed through a MobileNetV3-small (or custom lightweight CNN) trained on the synthetic dataset.</li>
+      <li><strong>Reconstruction:</strong> classified characters are concatenated by their sorted position to produce the final text string.</li>
+      <li><strong>Export:</strong> the trained PyTorch model is converted to ONNX for fast CPU inference with ONNX Runtime — no GPU required at inference time.</li>
+    </ul>
+  </section>
+
+  <section class="pd-section rv">
+    <h2 class="pd-section-title">Synthetic Dataset</h2>
+    <p class="pd-text">
+      Training data is generated entirely with Python + Pillow: characters are
+      rendered at varied sizes, rotations, and colours on randomly-noised
+      backgrounds. The target is 50–100K samples, split across the three font
+      families and the full printable ASCII character set. This avoids the need
+      to source and license real scanned documents.
+    </p>
+    <div class="pd-stack">
+      <span class="pd-chip">Python + Pillow (dataset gen)</span>
+      <span class="pd-chip">OpenCV (preprocessing)</span>
+      <span class="pd-chip">PyTorch (training)</span>
+      <span class="pd-chip">MobileNetV3-small</span>
+      <span class="pd-chip">ONNX Runtime (inference)</span>
+      <span class="pd-chip">Quantisation</span>
+    </div>
+  </section>
+
+  <div class="pd-links rv">
+    <a href="../index.html#contact" class="btn btn--primary">Ask me about this →</a>
+    <a href="../index.html#projects" class="btn btn--ghost">← All Projects</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <span>© 2025 Kaan Özdemir</span>
+  <span><a href="../index.html">← Back to portfolio</a></span>
+</footer>
+
+<script type="module">
+  import { initTheme }       from '../assets/js/theme-toggle.js';
+  import { initCursor }      from '../assets/js/cursor.js';
+  import { initScrollReveal } from '../assets/js/scroll-reveal.js';
+  import { initNavScroll }   from '../assets/js/nav-scroll.js';
+  import { initSwirlCanvas } from '../assets/js/canvas-bg.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    initTheme(); initCursor(); initScrollReveal(); initNavScroll(); initSwirlCanvas();
+  });
+</script>
+</body>
+</html>

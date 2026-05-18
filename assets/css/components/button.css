@@ -1,0 +1,47 @@
+/* ── BUTTONS ──────────────────────────────── */
+.btn {
+  padding: .88rem 2.2rem;
+  border-radius: var(--r-md);
+  font-family: var(--f-sans);
+  font-size: .9rem;
+  font-weight: 600;
+  cursor: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  transition: all .3s;
+}
+
+/* Primary */
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid color-mix(in srgb, var(--accent-l) 30%, transparent);
+  box-shadow: 0 0 32px color-mix(in srgb, var(--accent) 25%, transparent);
+  transition: all .3s, background var(--tr-slow), box-shadow var(--tr-slow);
+}
+.btn--primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 52px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+/* Ghost / outline */
+.btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  transition: all .3s, border-color var(--tr-slow), color var(--tr-slow);
+}
+.btn--ghost:hover {
+  border-color: var(--border-h);
+  color: var(--accent-l);
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+  transform: translateY(-3px);
+}
+
+/* Small variant */
+.btn--sm {
+  padding: .5rem 1.2rem;
+  font-size: var(--fs-xs);
+  border-radius: var(--r-sm);
+}

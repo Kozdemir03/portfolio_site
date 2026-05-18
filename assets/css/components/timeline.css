@@ -1,0 +1,121 @@
+/* ── EXPERIENCE TIMELINE ─────────────────── */
+#experience {
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  overflow: hidden;
+}
+#experience::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right,
+    transparent,
+    color-mix(in srgb, var(--accent) 40%, transparent),
+    transparent);
+}
+
+.tl-wrap {
+  position: relative;
+  padding-left: 2rem;
+}
+.tl-line {
+  position: absolute;
+  left: 0;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom,
+    var(--accent),
+    var(--accent2),
+    transparent);
+  transform-origin: top;
+  animation: tlBar 1.5s cubic-bezier(.4,0,.2,1) both;
+}
+
+.tl-item {
+  position: relative;
+  padding: 0 0 3.5rem 3rem;
+}
+.tl-item:last-child { padding-bottom: 0; }
+
+/* Dot on timeline */
+.tl-dot {
+  position: absolute;
+  left: -2.6rem;
+  top: 6px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--accent-l);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
+  transition: background var(--tr-slow);
+}
+.tl-item:nth-child(2) .tl-dot { background: var(--accent2-l); }
+.tl-item:nth-child(3) .tl-dot { background: var(--amber-l); }
+
+.tl-meta {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin-bottom: .55rem;
+}
+.tl-period {
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  letter-spacing: .1em;
+}
+.tl-type {
+  font-size: var(--fs-xs);
+  padding: .2rem .7rem;
+  border-radius: var(--r-full);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent-l);
+  font-weight: 600;
+}
+.tl-role {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  margin-bottom: .2rem;
+}
+.tl-company {
+  font-size: var(--fs-base);
+  color: var(--accent-l);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  transition: color var(--tr-slow);
+}
+.tl-bullets {
+  color: var(--muted);
+  font-size: .92rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+.tl-bullets li {
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: .45rem;
+}
+.tl-bullets li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent-l);
+  opacity: .7;
+}
+
+.tl-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+.tl-tag {
+  padding: .22rem .75rem;
+  border-radius: var(--r-full);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: .06em;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: var(--surface);
+  transition: border-color var(--tr-slow), background var(--tr-slow);
+}

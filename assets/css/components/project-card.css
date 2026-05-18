@@ -1,0 +1,146 @@
+/* ── PROJECT CARDS ───────────────────────── */
+#projects { background: color-mix(in srgb, var(--bg) 88%, transparent); }
+
+.proj-sub {
+  font-size: var(--fs-lg);
+  color: var(--muted);
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 4rem;
+}
+
+.pg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Card */
+.pc {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  cursor: none;
+  transform-style: preserve-3d;
+  transition: border-color .3s, box-shadow .3s, background var(--tr-slow), transform .08s linear;
+}
+.pc:hover {
+  border-color: var(--border-h);
+  box-shadow: var(--shadow);
+}
+
+/* Thumbnail */
+.pt {
+  aspect-ratio: 16/9;
+  position: relative;
+  overflow: hidden;
+}
+.pti {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  transition: transform .5s;
+}
+.pc:hover .pti { transform: scale(1.06); }
+
+/* Overlay buttons on hover */
+.pov {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  opacity: 0;
+  transition: opacity .3s;
+  backdrop-filter: blur(4px);
+}
+.pc:hover .pov { opacity: 1; }
+.pob {
+  padding: .6rem 1.3rem;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: var(--r-sm);
+  color: #fff;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  font-family: var(--f-sans);
+  cursor: none;
+  background: rgba(255,255,255,.08);
+  transition: all .2s;
+}
+.pob:hover { background: var(--accent); border-color: var(--accent); }
+
+/* Card body */
+.pb { padding: 1.6rem; }
+.ptags { display: flex; gap: .45rem; flex-wrap: wrap; margin-bottom: .85rem; }
+.tag {
+  padding: .28rem .8rem;
+  border-radius: var(--r-full);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+/* Tag color variants */
+.tv { background: color-mix(in srgb, var(--accent)  14%, transparent); color: var(--accent-l); }
+.tc { background: color-mix(in srgb, var(--accent2) 14%, transparent); color: var(--accent2-l); }
+.ta { background: color-mix(in srgb, var(--amber)   14%, transparent); color: var(--amber); }
+.tg { background: rgba(52,211,153,.14);  color: #34d399; }
+.tr { background: rgba(251,113,133,.14); color: #fb7185; }
+
+.ptitle {
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  margin-bottom: .5rem;
+  letter-spacing: -.01em;
+}
+.pdesc {
+  font-size: .88rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.pnum {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 1rem;
+  color: color-mix(in srgb, var(--muted) 15%, transparent);
+}
+
+/* Dev badge */
+.dev-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: var(--fs-xs);
+  padding: .22rem .75rem;
+  border-radius: var(--r-full);
+  background: color-mix(in srgb, var(--amber) 12%, transparent);
+  color: var(--amber);
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: .85rem;
+}
+
+/* Featured (full-width) card */
+.pc.feat {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.pc.feat .pt  { aspect-ratio: unset; min-height: 280px; }
+.pc.feat .pb  { padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+.pc.feat .ptitle { font-size: var(--fs-2xl); margin-bottom: .75rem; }
+.pc.feat .pdesc  { font-size: .95rem; }
+.pc.feat .pnum   { font-size: 4rem; }
+
+@media (max-width: 900px) {
+  .pc.feat { grid-template-columns: 1fr; }
+  .pc.feat .pt { min-height: 200px; aspect-ratio: 16/9; }
+  .pg { grid-template-columns: 1fr; }
+}

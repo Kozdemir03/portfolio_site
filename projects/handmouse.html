@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HandMouse — Kaan Özdemir</title>
+<meta name="description" content="Hands-free mouse control via real-time webcam hand-gesture recognition using Python, MediaPipe & OpenCV.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/00-reset.css">
+<link rel="stylesheet" href="../assets/css/01-tokens.css">
+<link rel="stylesheet" href="../assets/css/02-themes.css">
+<link rel="stylesheet" href="../assets/css/03-base.css">
+<link rel="stylesheet" href="../assets/css/04-layout.css">
+<link rel="stylesheet" href="../assets/css/05-cursor.css">
+<link rel="stylesheet" href="../assets/css/06-animations.css">
+<link rel="stylesheet" href="../assets/css/components/navbar.css">
+<link rel="stylesheet" href="../assets/css/components/button.css">
+<link rel="stylesheet" href="../assets/css/components/footer.css">
+<link rel="stylesheet" href="../assets/css/pages/project-detail.css">
+<style>
+  body { cursor: none; }
+  .pd-hero-bg { background: linear-gradient(135deg,#1e3a2f,#14532d,#166534); }
+</style>
+</head>
+<body>
+<canvas id="swirl-canvas"></canvas>
+<div class="cur-dot" id="cdot"></div>
+<div class="cur-ring" id="cring"></div>
+
+<nav class="navbar" id="navbar">
+  <a href="../index.html" class="logo">K.</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Work</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <button class="ttog" id="ttog" aria-label="Toggle theme">☀️</button>
+  </div>
+</nav>
+
+<main class="proj-detail">
+  <a href="../index.html#projects" class="pd-back rv">← Back to all projects</a>
+
+  <!-- Hero banner -->
+  <div class="pd-hero rv">
+    <div class="pd-hero-bg"></div>
+    <div class="pd-hero-content">
+      <span class="pd-emoji">🖱️</span>
+      <h1 class="pd-title">HandMouse</h1>
+      <p class="pd-subtitle">Hands-free mouse control via webcam</p>
+      <div class="pd-tags">
+        <span class="tag ta">Python</span>
+        <span class="tag tv">MediaPipe</span>
+        <span class="tag tc">OpenCV</span>
+        <span class="tag tg">PyAutoGUI</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overview -->
+  <section class="pd-section rv">
+    <div class="pd-grid">
+      <div>
+        <h2 class="pd-section-title">Overview</h2>
+        <p class="pd-text">
+          HandMouse (MobilMouse) lets you control your computer mouse entirely with
+          hand gestures captured by a standard webcam — no physical mouse needed.
+          Cursor movement, left/right clicks, and scroll are all mapped to hand
+          landmarks detected in real time.
+        </p>
+        <p class="pd-text" style="margin-top:1rem">
+          The project also ships as a system-tray application with Windows startup
+          Registry integration, so it launches automatically on boot. A one-click
+          installer and a live camera-preview UI make setup painless.
+        </p>
+      </div>
+      <div>
+        <h2 class="pd-section-title">Key Features</h2>
+        <ul class="pd-bullets">
+          <li>Real-time hand-gesture recognition at 30+ fps via MediaPipe Hands</li>
+          <li>Cursor movement mapped to index-finger landmark position</li>
+          <li>Pinch gesture for left-click, two-finger pinch for right-click</li>
+          <li>Vertical palm movement for scroll</li>
+          <li>System tray icon — enable/disable without opening the window</li>
+          <li>Windows Registry startup integration</li>
+          <li>Live camera preview window with landmark overlay</li>
+          <li>One-click installer (PyInstaller bundle)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="pd-section rv" style="background:color-mix(in srgb,var(--surface) 60%,transparent)">
+    <h2 class="pd-section-title">Tech Stack</h2>
+    <p class="pd-text">
+      Built entirely in Python, leveraging Google's MediaPipe for hand-landmark
+      detection and PyAutoGUI for cross-platform mouse control. OpenCV handles
+      webcam capture and the preview window rendering.
+    </p>
+    <div class="pd-stack">
+      <span class="pd-chip">Python 3.x</span>
+      <span class="pd-chip">MediaPipe Hands</span>
+      <span class="pd-chip">OpenCV</span>
+      <span class="pd-chip">PyAutoGUI</span>
+      <span class="pd-chip">pystray (system tray)</span>
+      <span class="pd-chip">winreg (startup)</span>
+      <span class="pd-chip">PyInstaller</span>
+    </div>
+  </section>
+
+  <!-- Challenges -->
+  <section class="pd-section rv">
+    <h2 class="pd-section-title">Challenges</h2>
+    <ul class="pd-bullets">
+      <li>Keeping cursor movement smooth despite per-frame landmark jitter — solved with an exponential moving-average filter on x/y coordinates.</li>
+      <li>Distinguishing intentional click gestures from natural hand tremor — thresholded on finger-distance delta over multiple frames.</li>
+      <li>Packaging a Python app with webcam access into a single distributable exe — handled via PyInstaller with hidden-imports for MediaPipe's compiled modules.</li>
+      <li>Reliable Registry startup entry that survives Windows updates and UAC prompts.</li>
+    </ul>
+  </section>
+
+  <!-- Links -->
+  <div class="pd-links rv">
+    <a href="https://github.com/Kozdemir03/handmouse" target="_blank" rel="noopener" class="btn btn--primary">GitHub Repository →</a>
+    <a href="../index.html#projects" class="btn btn--ghost">← All Projects</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <span>© 2025 Kaan Özdemir</span>
+  <span><a href="../index.html">← Back to portfolio</a></span>
+</footer>
+
+<script type="module">
+  import { initTheme }       from '../assets/js/theme-toggle.js';
+  import { initCursor }      from '../assets/js/cursor.js';
+  import { initScrollReveal } from '../assets/js/scroll-reveal.js';
+  import { initNavScroll }   from '../assets/js/nav-scroll.js';
+  import { initSwirlCanvas } from '../assets/js/canvas-bg.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    initTheme(); initCursor(); initScrollReveal(); initNavScroll(); initSwirlCanvas();
+  });
+</script>
+</body>
+</html>

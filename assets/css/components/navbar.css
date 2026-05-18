@@ -1,0 +1,89 @@
+/* ── NAVBAR ───────────────────────────────── */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: var(--z-nav);
+  padding: 1.4rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all .4s;
+}
+.navbar.scrolled {
+  background: var(--nav-blur);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: .9rem 5%;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+.nav-links a {
+  color: var(--muted);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition: color var(--tr-base);
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: var(--accent-l);
+  transition: width .3s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after,
+.nav-links a.is-active::after { width: 100%; }
+.nav-links a.is-active { color: var(--accent-l); }
+
+/* Theme toggle button */
+.ttog {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: none;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--tr-slow), border-color var(--tr-slow), transform var(--tr-base);
+  flex-shrink: 0;
+}
+.ttog:hover {
+  border-color: var(--border-h);
+  background: var(--surface2);
+  transform: scale(1.1) rotate(15deg);
+}
+
+@media (max-width: 680px) {
+  .nav-links { gap: 1.2rem; }
+  .navbar { padding: 1rem 4%; }
+  .navbar.scrolled { padding: .8rem 4%; }
+}
+@media (max-width: 480px) {
+  .nav-links li:nth-child(3),
+  .nav-links li:nth-child(4) { display: none; }
+}

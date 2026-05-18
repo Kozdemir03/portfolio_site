@@ -1,0 +1,103 @@
+/* ── BASE ─────────────────────────────────── */
+body {
+  font-family: var(--f-sans);
+  background: var(--bg);
+  color: var(--text);
+  cursor: none;
+  overflow-x: hidden;
+  transition: background var(--tr-slow), color var(--tr-slow);
+}
+
+h1,h2,h3,h4 {
+  line-height: 1.1;
+  letter-spacing: -.02em;
+}
+
+p { line-height: 1.8; }
+
+/* Gradient text utility */
+.gtxt {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200%;
+  animation: gsh 6s ease infinite;
+}
+@keyframes gsh {
+  0%,100% { background-position: 0% 50% }
+  50%      { background-position: 100% 50% }
+}
+
+/* Eyebrow label */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: var(--fs-xs);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent-l);
+  font-weight: 600;
+  transition: color var(--tr-slow);
+}
+.eyebrow::before {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: linear-gradient(to right, var(--accent-l), transparent);
+}
+
+/* Section title */
+.sec-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.08;
+  margin-bottom: 1rem;
+}
+
+/* Accent line */
+.aline {
+  width: 56px;
+  height: 3px;
+  background: linear-gradient(to right, var(--accent), var(--accent2));
+  border-radius: var(--r-full);
+  margin-bottom: 3.5rem;
+  transition: background var(--tr-slow);
+}
+
+/* Scroll reveal */
+.rv {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity .85s cubic-bezier(.4,0,.2,1),
+              transform .85s cubic-bezier(.4,0,.2,1);
+}
+.rv.on { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: .1s }
+.d2 { transition-delay: .2s }
+.d3 { transition-delay: .3s }
+
+/* Canvas layers */
+#swirl-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-bg);
+}
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Reduced-motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+  #swirl-canvas, #hero-canvas { display: none; }
+}

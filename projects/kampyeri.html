@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KampYeri — Kaan Özdemir</title>
+<meta name="description" content="Full-stack reservation platform for campsites, hotels, and caravan areas built with ASP.NET, C#, SQL, and Bootstrap.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/00-reset.css">
+<link rel="stylesheet" href="../assets/css/01-tokens.css">
+<link rel="stylesheet" href="../assets/css/02-themes.css">
+<link rel="stylesheet" href="../assets/css/03-base.css">
+<link rel="stylesheet" href="../assets/css/04-layout.css">
+<link rel="stylesheet" href="../assets/css/05-cursor.css">
+<link rel="stylesheet" href="../assets/css/06-animations.css">
+<link rel="stylesheet" href="../assets/css/components/navbar.css">
+<link rel="stylesheet" href="../assets/css/components/button.css">
+<link rel="stylesheet" href="../assets/css/components/footer.css">
+<link rel="stylesheet" href="../assets/css/pages/project-detail.css">
+<style>
+  body { cursor: none; }
+  .pd-hero-bg { background: linear-gradient(135deg,#0c2a1e,#14532d,#052e16); }
+</style>
+</head>
+<body>
+<canvas id="swirl-canvas"></canvas>
+<div class="cur-dot" id="cdot"></div>
+<div class="cur-ring" id="cring"></div>
+
+<nav class="navbar" id="navbar">
+  <a href="../index.html" class="logo">K.</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Work</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <button class="ttog" id="ttog" aria-label="Toggle theme">☀️</button>
+  </div>
+</nav>
+
+<main class="proj-detail">
+  <a href="../index.html#projects" class="pd-back rv">← Back to all projects</a>
+
+  <div class="pd-hero rv">
+    <div class="pd-hero-bg"></div>
+    <div class="pd-hero-content">
+      <span class="pd-emoji">🏕️</span>
+      <h1 class="pd-title">KampYeri</h1>
+      <p class="pd-subtitle">Full-stack campsite & hotel reservation platform</p>
+      <div class="pd-tags">
+        <span class="tag tv">C#</span>
+        <span class="tag tc">ASP.NET</span>
+        <span class="tag ta">SQL</span>
+        <span class="tag tg">Bootstrap</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="pd-section rv">
+    <div class="pd-grid">
+      <div>
+        <h2 class="pd-section-title">Overview</h2>
+        <p class="pd-text">
+          KampYeri is a production-ready reservation platform built at F1Proje
+          (Oct 2024 – Apr 2025) that allows end-users to search, filter, and book
+          campsites, hotels, and caravan areas across Turkey.
+        </p>
+        <p class="pd-text" style="margin-top:1rem">
+          Businesses can register, create dynamic listings with photos and pricing,
+          manage bookings, and track revenue through a dedicated admin dashboard —
+          all from within the same application.
+        </p>
+      </div>
+      <div>
+        <h2 class="pd-section-title">Key Features</h2>
+        <ul class="pd-bullets">
+          <li>User registration, login, and role-based access (guest / business / admin)</li>
+          <li>Dynamic business listings with availability calendars</li>
+          <li>Date-range booking with conflict detection</li>
+          <li>Business management portal — add/edit venues, photos, pricing</li>
+          <li>Admin dashboard with booking and revenue statistics</li>
+          <li>Responsive Bootstrap frontend</li>
+          <li>Standalone admin panel for a pre-existing web application (separate deliverable)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="pd-section rv" style="background:color-mix(in srgb,var(--surface) 60%,transparent)">
+    <h2 class="pd-section-title">Architecture & Tech</h2>
+    <p class="pd-text">
+      The backend is built on ASP.NET Web Forms / MVC with C#. Data access uses
+      LINQ-to-SQL, keeping queries type-safe and refactorable. The database schema
+      was designed from scratch, normalised to 3NF, and includes foreign keys for
+      bookings, listings, users, and media assets.
+    </p>
+    <div class="pd-stack">
+      <span class="pd-chip">C#</span>
+      <span class="pd-chip">ASP.NET</span>
+      <span class="pd-chip">LINQ-to-SQL</span>
+      <span class="pd-chip">SQL Server</span>
+      <span class="pd-chip">Bootstrap 5</span>
+      <span class="pd-chip">jQuery</span>
+    </div>
+  </section>
+
+  <section class="pd-section rv">
+    <h2 class="pd-section-title">My Role</h2>
+    <ul class="pd-bullets">
+      <li>Designed the full SQL schema — entities, relationships, indexes, and stored procedures.</li>
+      <li>Built the LINQ data-access layer, eliminating raw SQL strings throughout the codebase.</li>
+      <li>Implemented user authentication, password hashing, and session management.</li>
+      <li>Developed the business-registration and listing-management module end-to-end.</li>
+      <li>Built a separate, standalone admin panel for an existing company web application using C#, LINQ, and SQL.</li>
+    </ul>
+  </section>
+
+  <div class="pd-links rv">
+    <a href="https://github.com/Kozdemir03" target="_blank" rel="noopener" class="btn btn--primary">GitHub →</a>
+    <a href="../index.html#projects" class="btn btn--ghost">← All Projects</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <span>© 2025 Kaan Özdemir</span>
+  <span><a href="../index.html">← Back to portfolio</a></span>
+</footer>
+
+<script type="module">
+  import { initTheme }       from '../assets/js/theme-toggle.js';
+  import { initCursor }      from '../assets/js/cursor.js';
+  import { initScrollReveal } from '../assets/js/scroll-reveal.js';
+  import { initNavScroll }   from '../assets/js/nav-scroll.js';
+  import { initSwirlCanvas } from '../assets/js/canvas-bg.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    initTheme(); initCursor(); initScrollReveal(); initNavScroll(); initSwirlCanvas();
+  });
+</script>
+</body>
+</html>

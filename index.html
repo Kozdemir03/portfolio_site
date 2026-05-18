@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaan Özdemir — Software Developer</title>
+<meta name="description" content="Software developer specialising in full-stack web, AI/CV solutions, and mobile games. Based in İzmir, Turkey.">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+
+<!-- CSS — loaded in cascade order -->
+<link rel="stylesheet" href="assets/css/00-reset.css">
+<link rel="stylesheet" href="assets/css/01-tokens.css">
+<link rel="stylesheet" href="assets/css/02-themes.css">
+<link rel="stylesheet" href="assets/css/03-base.css">
+<link rel="stylesheet" href="assets/css/04-layout.css">
+<link rel="stylesheet" href="assets/css/05-cursor.css">
+<link rel="stylesheet" href="assets/css/06-animations.css">
+<link rel="stylesheet" href="assets/css/components/navbar.css">
+<link rel="stylesheet" href="assets/css/components/hero.css">
+<link rel="stylesheet" href="assets/css/components/button.css">
+<link rel="stylesheet" href="assets/css/components/card.css">
+<link rel="stylesheet" href="assets/css/components/timeline.css">
+<link rel="stylesheet" href="assets/css/components/badge.css">
+<link rel="stylesheet" href="assets/css/components/project-card.css">
+<link rel="stylesheet" href="assets/css/components/footer.css">
+
+<style>
+/* ── Page-specific tweaks ── */
+#about  { background: color-mix(in srgb, var(--bg) 88%, transparent); overflow: hidden; }
+#contact { z-index: var(--z-content); }
+
+.about-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2.5rem;
+}
+.about-col-title {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+@media (max-width: 600px) { .about-cols { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- Fixed swirl canvas (always renders behind everything) -->
+<canvas id="swirl-canvas"></canvas>
+
+<!-- Custom cursor -->
+<div class="cur-dot"  id="cdot"></div>
+<div class="cur-ring" id="cring"></div>
+
+<!-- ══════════════════════════════════════════
+     NAV
+════════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <a href="#hero" class="logo">K.</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="ttog" id="ttog" aria-label="Toggle theme">☀️</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="bdot"></span>Available for opportunities
+    </div>
+    <h1 class="hero-name">
+      Hi, I'm<br>
+      <span class="gtxt">Kaan Özdemir.</span>
+    </h1>
+    <div class="hero-role">
+      I build <span class="twt" id="tw"></span><span class="cblink"></span>
+    </div>
+    <p class="hero-desc">
+      Computer Programming student at İzmir University of Economics — building
+      full-stack platforms, AI/CV tools, and mobile games. I care about writing
+      clean code that solves real problems.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn--primary">View my work ↓</a>
+      <a href="#contact"  class="btn btn--ghost">Let's talk →</a>
+    </div>
+  </div>
+
+  <div class="scr-hint">
+    <span>Scroll</span>
+    <div class="scr-mouse"><div class="scr-wheel"></div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════════ -->
+<section id="about">
+  <div class="about-grid">
+    <!-- Avatar card -->
+    <div class="av-wrap rv">
+      <div class="av-card">
+        <div class="av-glow"></div>
+        <div class="av-letter">K</div>
+      </div>
+      <div class="dq"></div>
+      <div class="dc"></div>
+      <div class="dd">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- Text side -->
+    <div class="about-txt">
+      <div class="eyebrow rv">About me</div>
+      <h2 class="sec-title rv">Building software that actually works.</h2>
+      <div class="aline rv"></div>
+
+      <p class="rv">
+        I'm a Computer Programming student at İzmir University of Economics with a
+        hands-on mindset. I've shipped production-ready software through internships
+        and personal projects — ranging from AI-integrated chatbots to full-stack
+        reservation platforms and computer-vision tools.
+      </p>
+      <p class="rv">
+        I speak Turkish (native), English (B2), and French (B1). When I'm not
+        coding I'm probably designing a new game mechanic in Unity or optimising
+        a dataset pipeline.
+      </p>
+
+      <!-- Stat cards -->
+      <div class="stat-grid">
+        <div class="stat-card rv d1"><div class="sn">3+</div><div class="sl">Professional roles</div></div>
+        <div class="stat-card rv d2"><div class="sn">5+</div><div class="sl">Projects shipped</div></div>
+        <div class="stat-card rv d1"><div class="sn">10+</div><div class="sl">Technologies</div></div>
+        <div class="stat-card rv d2"><div class="sn">3</div><div class="sl">Languages spoken</div></div>
+      </div>
+
+      <!-- Education & Languages -->
+      <div class="about-cols rv">
+        <div>
+          <div class="about-col-title">Education</div>
+          <div class="info-row">
+            <div class="info-dot"></div>
+            <div>
+              <div class="info-title">İzmir University of Economics</div>
+              <div class="info-sub">Computer Programming · 2023 – Present</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-dot" style="background:var(--accent2-l)"></div>
+            <div>
+              <div class="info-title">Lycée Tevfik Fikret d'İzmir</div>
+              <div class="info-sub">High School · 2018 – 2023</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="about-col-title">Languages</div>
+          <div class="info-row">
+            <div class="info-dot"></div>
+            <div>
+              <div class="info-title">Turkish</div>
+              <div class="info-sub">Native</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-dot" style="background:var(--accent2-l)"></div>
+            <div>
+              <div class="info-title">English</div>
+              <div class="info-sub">Upper-Intermediate (B2)</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-dot" style="background:var(--amber-l)"></div>
+            <div>
+              <div class="info-title">French</div>
+              <div class="info-sub">Intermediate (B1)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rv" style="margin-top:2rem">
+        <a href="Kaan_Ozdemir_CV.pdf" target="_blank" class="btn btn--primary">Download CV ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     EXPERIENCE
+════════════════════════════════════════════ -->
+<section id="experience">
+  <div class="eyebrow rv">Career</div>
+  <h2 class="sec-title rv">Experience</h2>
+  <div class="aline rv"></div>
+
+  <div class="tl-wrap" style="max-width:760px">
+    <div class="tl-line"></div>
+    <!-- Items injected by experience-loader.js -->
+    <div id="experience-wrap"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SKILLS
+════════════════════════════════════════════ -->
+<section id="skills">
+  <div class="sk-header">
+    <div class="eyebrow rv">My arsenal</div>
+    <h2 class="sec-title rv">Tech I work with</h2>
+    <div class="aline rv"></div>
+  </div>
+  <!-- Cards injected by skills-loader.js -->
+  <div class="sk-grid" id="skills-grid"></div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PROJECTS
+════════════════════════════════════════════ -->
+<section id="projects">
+  <div class="eyebrow rv">Selected work</div>
+  <h2 class="sec-title rv">Things I've built.</h2>
+  <p class="proj-sub rv">
+    A mix of personal projects, freelance work, and internship deliverables —
+    each one taught me something new.
+  </p>
+  <!-- Cards injected by project-loader.js -->
+  <div class="pg" id="projects-grid"></div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="c-orb"></div>
+  <div class="eyebrow c-label rv">Get in touch</div>
+  <h2 class="c-head rv">
+    Have a project?<br>Let's build it <span class="gtxt">together.</span>
+  </h2>
+  <p class="c-sub rv">
+    I'm open to internships, collaborations, and full-time opportunities.
+    Drop me a message — I respond within 24 hours.
+  </p>
+  <a href="mailto:kaanozdemir003@gmail.com" class="c-email rv">
+    kaanozdemir003@gmail.com
+  </a><br><br>
+
+  <div class="socials rv">
+    <a href="https://github.com/Kozdemir03" target="_blank" rel="noopener" class="soc" title="GitHub">GH</a>
+    <a href="https://linkedin.com/in/kaan-ozdemir-540637389" target="_blank" rel="noopener" class="soc" title="LinkedIn">in</a>
+    <a href="mailto:kaanozdemir003@gmail.com" class="soc" title="Email">@</a>
+    <a href="Kaan_Ozdemir_CV.pdf" target="_blank" class="soc" title="Download CV">CV</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <span>© 2025 Kaan Özdemir — Built with vanilla HTML, CSS &amp; JS</span>
+  <span>İzmir, Turkey · <a href="mailto:kaanozdemir003@gmail.com">kaanozdemir003@gmail.com</a></span>
+</footer>
+
+<!-- JS — ES modules (no build step required) -->
+<script type="module" src="assets/js/main.js"></script>
+
+</body>
+</html>

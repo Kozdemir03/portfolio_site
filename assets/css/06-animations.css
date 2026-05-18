@@ -1,0 +1,16 @@
+/* ── ANIMATIONS ──────────────────────────── */
+@keyframes fdUp  { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fdDn  { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
+@keyframes forb  { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(40px,-40px) scale(1.05)} }
+@keyframes bpls  { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+@keyframes cblink{ 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes swheel{ 0%{opacity:1;transform:translateY(0)} 80%{opacity:0;transform:translateY(10px)} 100%{opacity:0;transform:translateY(0)} }
+@keyframes gsh   { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+@keyframes tlBar { from{transform:scaleY(0)} to{transform:scaleY(1)} }
+@keyframes skFill{ from{width:0} to{width:var(--target-w)} }
+
+/* Floating orbs */
+.orb { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; }
+.orb1{ width:700px;height:700px;background:var(--accent); top:-250px;right:-150px; opacity:.09;animation:forb 12s ease-in-out infinite }
+.orb2{ width:450px;height:450px;background:var(--accent2);bottom:-150px;left:-80px;opacity:.07;animation:forb 14s ease-in-out infinite reverse }
+.orb3{ width:300px;height:300px;background:var(--amber);  top:35%;left:55%;       opacity:.05;animation:forb 10s ease-in-out 2s infinite }

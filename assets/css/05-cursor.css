@@ -1,0 +1,42 @@
+/* ── CUSTOM CURSOR ───────────────────────── */
+.cur-dot {
+  width: 7px; height: 7px;
+  background: var(--accent-l);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  transform: translate(-50%,-50%);
+  transition: transform var(--tr-fast), background var(--tr-slow);
+}
+.cur-ring {
+  width: 32px; height: 32px;
+  border: 1.5px solid color-mix(in srgb, var(--accent-l) 55%, transparent);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: calc(var(--z-cursor) - 1);
+  transform: translate(-50%,-50%);
+  transition: width .25s, height .25s, border-color var(--tr-slow);
+}
+
+/* Click ripple */
+.ripple {
+  position: fixed;
+  border-radius: 50%;
+  border: 2px solid var(--accent-l);
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+  z-index: calc(var(--z-cursor) - 2);
+  animation: rippleOut .65s cubic-bezier(.15,.6,.35,1) forwards;
+  width: 0; height: 0;
+}
+@keyframes rippleOut {
+  0%   { width:0;     height:0;     opacity:.8; border-width:2px }
+  100% { width:100px; height:100px; opacity:0;  border-width:.5px }
+}
+
+@media (pointer: coarse) {
+  .cur-dot, .cur-ring { display: none; }
+  body { cursor: auto; }
+}

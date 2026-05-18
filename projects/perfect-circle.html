@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfect Circle — Kaan Özdemir</title>
+<meta name="description" content="Browser game that scores freehand circle accuracy using centroid-distance standard deviation analysis.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/00-reset.css">
+<link rel="stylesheet" href="../assets/css/01-tokens.css">
+<link rel="stylesheet" href="../assets/css/02-themes.css">
+<link rel="stylesheet" href="../assets/css/03-base.css">
+<link rel="stylesheet" href="../assets/css/04-layout.css">
+<link rel="stylesheet" href="../assets/css/05-cursor.css">
+<link rel="stylesheet" href="../assets/css/06-animations.css">
+<link rel="stylesheet" href="../assets/css/components/navbar.css">
+<link rel="stylesheet" href="../assets/css/components/button.css">
+<link rel="stylesheet" href="../assets/css/components/footer.css">
+<link rel="stylesheet" href="../assets/css/pages/project-detail.css">
+<style>
+  body { cursor: none; }
+  .pd-hero-bg { background: linear-gradient(135deg,#1e1b4b,#312e81,#4c1d95); }
+</style>
+</head>
+<body>
+<canvas id="swirl-canvas"></canvas>
+<div class="cur-dot" id="cdot"></div>
+<div class="cur-ring" id="cring"></div>
+
+<nav class="navbar" id="navbar">
+  <a href="../index.html" class="logo">K.</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Work</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <button class="ttog" id="ttog" aria-label="Toggle theme">☀️</button>
+  </div>
+</nav>
+
+<main class="proj-detail">
+  <a href="../index.html#projects" class="pd-back rv">← Back to all projects</a>
+
+  <div class="pd-hero rv">
+    <div class="pd-hero-bg"></div>
+    <div class="pd-hero-content">
+      <span class="pd-emoji">⭕</span>
+      <h1 class="pd-title">Perfect Circle</h1>
+      <p class="pd-subtitle">How perfect can you draw a circle freehand?</p>
+      <div class="pd-tags">
+        <span class="tag tc">HTML5</span>
+        <span class="tag ta">JavaScript</span>
+        <span class="tag tv">Canvas API</span>
+        <span class="tag tg">Chart.js</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="pd-section rv">
+    <div class="pd-grid">
+      <div>
+        <h2 class="pd-section-title">Overview</h2>
+        <p class="pd-text">
+          Perfect Circle is a browser game that challenges you to draw the most
+          accurate freehand circle possible. When you lift your pen or mouse, the
+          app instantly calculates a score from 0 to 100 % using centroid-distance
+          standard deviation analysis — the lower the deviation of each point from
+          the ideal radius, the higher your score.
+        </p>
+      </div>
+      <div>
+        <h2 class="pd-section-title">Key Features</h2>
+        <ul class="pd-bullets">
+          <li>Canvas-based freehand drawing with real-time score calculation</li>
+          <li>Centroid + standard deviation algorithm for accuracy measurement</li>
+          <li>Role-based auth: admin / regular user with sessionStorage sessions</li>
+          <li>Persistent localStorage leaderboard — top scores survive page reload</li>
+          <li>Admin dashboard with Chart.js score distribution, bar charts, and stats</li>
+          <li>Responsive layout — works on desktop and tablet</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="pd-section rv" style="background:color-mix(in srgb,var(--surface) 60%,transparent)">
+    <h2 class="pd-section-title">How the Scoring Works</h2>
+    <p class="pd-text">
+      After you finish drawing, the app collects all recorded points, computes the
+      centroid, then calculates the average distance (r̄) from the centroid to each
+      point. The standard deviation of those distances is used to quantify
+      irregularity. A perfectly round path would have σ = 0, giving a score of
+      100 %. The final score formula maps σ to the 0–100 range with a smooth
+      sigmoid-like curve so that small improvements still feel rewarding.
+    </p>
+    <div class="pd-stack">
+      <span class="pd-chip">HTML5 Canvas</span>
+      <span class="pd-chip">Vanilla JavaScript</span>
+      <span class="pd-chip">Chart.js</span>
+      <span class="pd-chip">sessionStorage auth</span>
+      <span class="pd-chip">localStorage leaderboard</span>
+    </div>
+  </section>
+
+  <section class="pd-section rv">
+    <h2 class="pd-section-title">Challenges</h2>
+    <ul class="pd-bullets">
+      <li>Smoothing raw mouse/touch coordinates to avoid sampling noise without sacrificing responsiveness.</li>
+      <li>Designing a score formula that feels fair at both extremes — a nearly perfect circle should score 99+, while a rough oval shouldn't score above 50.</li>
+      <li>Building a lightweight auth system without a backend — solved with hashed passwords in sessionStorage and a hard-coded admin role flag.</li>
+      <li>Keeping Chart.js lightweight — only the bar and scatter chart modules were imported.</li>
+    </ul>
+  </section>
+
+  <div class="pd-links rv">
+    <a href="https://github.com/Kozdemir03" target="_blank" rel="noopener" class="btn btn--primary">GitHub →</a>
+    <a href="../index.html#projects" class="btn btn--ghost">← All Projects</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <span>© 2025 Kaan Özdemir</span>
+  <span><a href="../index.html">← Back to portfolio</a></span>
+</footer>
+
+<script type="module">
+  import { initTheme }       from '../assets/js/theme-toggle.js';
+  import { initCursor }      from '../assets/js/cursor.js';
+  import { initScrollReveal } from '../assets/js/scroll-reveal.js';
+  import { initNavScroll }   from '../assets/js/nav-scroll.js';
+  import { initSwirlCanvas } from '../assets/js/canvas-bg.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    initTheme(); initCursor(); initScrollReveal(); initNavScroll(); initSwirlCanvas();
+  });
+</script>
+</body>
+</html>

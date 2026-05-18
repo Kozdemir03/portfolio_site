@@ -1,0 +1,74 @@
+[
+  {
+    "category": "Languages",
+    "icon": "⚡",
+    "accent": "accent",
+    "desc": "Core programming languages",
+    "items": [
+      { "name": "Python", "level": 88 },
+      { "name": "C#", "level": 82 },
+      { "name": "JavaScript / TypeScript", "level": 85 },
+      { "name": "Java", "level": 68 }
+    ]
+  },
+  {
+    "category": "Backend",
+    "icon": "🛠",
+    "accent": "accent2",
+    "desc": "APIs & server-side",
+    "items": [
+      { "name": "ASP.NET / C#", "level": 80 },
+      { "name": "SQL & LINQ", "level": 83 },
+      { "name": "PHP", "level": 60 },
+      { "name": "REST APIs", "level": 85 }
+    ]
+  },
+  {
+    "category": "Frontend",
+    "icon": "🎨",
+    "accent": "amber",
+    "desc": "UI & user experience",
+    "items": [
+      { "name": "HTML5 / CSS3", "level": 90 },
+      { "name": "React Native", "level": 72 },
+      { "name": "Bootstrap", "level": 82 },
+      { "name": "Canvas API / Chart.js", "level": 78 }
+    ]
+  },
+  {
+    "category": "AI & CV Tools",
+    "icon": "🤖",
+    "accent": "accent",
+    "desc": "Machine learning & vision",
+    "items": [
+      { "name": "MediaPipe / OpenCV", "level": 85 },
+      { "name": "PyTorch", "level": 70 },
+      { "name": "Pandas / Seaborn", "level": 82 },
+      { "name": "ONNX Runtime", "level": 62 }
+    ]
+  },
+  {
+    "category": "Platforms & Tools",
+    "icon": "🔧",
+    "accent": "accent2",
+    "desc": "Dev environment & platforms",
+    "items": [
+      { "name": "Unity (iOS & Android)", "level": 75 },
+      { "name": "Git & GitHub", "level": 88 },
+      { "name": "Linux / CLI", "level": 72 },
+      { "name": "Hikvision SDK", "level": 60 }
+    ]
+  },
+  {
+    "category": "Concepts",
+    "icon": "💡",
+    "accent": "amber",
+    "desc": "Patterns & paradigms",
+    "items": [
+      { "name": "OOP & Design Patterns", "level": 83 },
+      { "name": "Computer Vision", "level": 80 },
+      { "name": "Real-Time Data Sync", "level": 75 },
+      { "name": "AI/ML Integration", "level": 72 }
+    ]
+  }
+]

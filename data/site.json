@@ -1,0 +1,31 @@
+{
+  "name": "Kaan Özdemir",
+  "initials": "KÖ",
+  "title": "Software Developer",
+  "email": "kaanozdemir003@gmail.com",
+  "phone": "+90 539 686 97 89",
+  "location": "İzmir, Turkey",
+  "github": "https://github.com/Kozdemir03",
+  "linkedin": "https://linkedin.com/in/kaan-ozdemir-540637389",
+  "cv": "Kaan_Ozdemir_CV.pdf",
+  "summary": "Computer Programming student at İzmir University of Economics with hands-on experience in full-stack web development, mobile application development, and AI-integrated solutions. Proficient in C#, Python, ASP.NET, React Native, and SQL. Strong foundation in backend development with growing expertise in mobile, game, and computer-vision systems.",
+  "education": [
+    {
+      "school": "İzmir University of Economics",
+      "degree": "Computer Programming",
+      "period": "2023 – Present",
+      "note": "English Preparatory Class completed"
+    },
+    {
+      "school": "Lycée Tevfik Fikret d'İzmir",
+      "degree": "High School",
+      "period": "2018 – 2023",
+      "note": "French Preparatory Class completed"
+    }
+  ],
+  "languages": [
+    { "lang": "Turkish", "level": "Native" },
+    { "lang": "English", "level": "Upper-Intermediate (B2)" },
+    { "lang": "French", "level": "Intermediate (B1)" }
+  ]
+}

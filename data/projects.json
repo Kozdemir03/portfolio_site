@@ -1,0 +1,72 @@
+[
+  {
+    "id": "handmouse",
+    "title": "HandMouse",
+    "subtitle": "Hands-free mouse control via webcam",
+    "tags": ["Python", "MediaPipe", "OpenCV", "PyAutoGUI"],
+    "tagColors": ["ta", "tv", "tc", "tg"],
+    "emoji": "🖱️",
+    "gradient": "linear-gradient(135deg,#1e3a2f,#14532d,#166534)",
+    "summary": "Real-time hand-gesture mouse control via webcam. Cursor movement, clicks, and scroll are mapped to hand landmarks. Features a system tray app with Windows startup Registry integration and a one-click installer with live camera preview UI.",
+    "github": "https://github.com/Kozdemir03/handmouse",
+    "featured": true,
+    "status": "released",
+    "detailPage": "projects/handmouse.html"
+  },
+  {
+    "id": "perfect-circle",
+    "title": "Perfect Circle",
+    "subtitle": "Browser game — how close to perfect can you draw?",
+    "tags": ["HTML5", "JavaScript", "Canvas API", "Chart.js"],
+    "tagColors": ["tc", "ta", "tv", "tg"],
+    "emoji": "⭕",
+    "gradient": "linear-gradient(135deg,#1e1b4b,#312e81,#4c1d95)",
+    "summary": "Browser game that scores freehand circle accuracy (0–100%) using centroid-distance standard deviation analysis. Features role-based login (admin/user), sessionStorage auth, persistent localStorage leaderboard, and an admin dashboard with Chart.js score statistics.",
+    "github": "https://github.com/Kozdemir03",
+    "featured": false,
+    "status": "released",
+    "detailPage": "projects/perfect-circle.html"
+  },
+  {
+    "id": "kampyeri",
+    "title": "KampYeri",
+    "subtitle": "Full-stack campsite & hotel reservation platform",
+    "tags": ["C#", "ASP.NET", "SQL", "Bootstrap"],
+    "tagColors": ["tv", "tc", "ta", "tg"],
+    "emoji": "🏕️",
+    "gradient": "linear-gradient(135deg,#0c2a1e,#14532d,#052e16)",
+    "summary": "Full-stack reservation platform for campsites, hotels, and caravan areas with a dynamic business management system. Built with ASP.NET & LINQ on the backend, Bootstrap frontend, and a standalone admin panel for a separate existing web application.",
+    "github": "https://github.com/Kozdemir03",
+    "featured": false,
+    "status": "released",
+    "detailPage": "projects/kampyeri.html"
+  },
+  {
+    "id": "mobile-app-analysis",
+    "title": "Mobile App Analysis",
+    "subtitle": "Data analysis on 1500+ apps from Google Play & App Store",
+    "tags": ["Python", "Pandas", "Seaborn", "Web Scraping"],
+    "tagColors": ["ta", "tv", "tc", "tg"],
+    "emoji": "📊",
+    "gradient": "linear-gradient(135deg,#0c1a3a,#0369a1,#0e4f8a)",
+    "summary": "End-to-end data analysis on a 1,500+ app dataset scraped from Google Play and Apple App Store. Covers EDA, missing-value imputation, outlier detection via IQR & Z-Score. Includes 10 GroupBy queries and 10 visualization types (histplot, heatmap, pairplot, violinplot).",
+    "github": "https://github.com/Kozdemir03",
+    "featured": false,
+    "status": "released",
+    "detailPage": "projects/mobile-app-analysis.html"
+  },
+  {
+    "id": "ocr-system",
+    "title": "Font-Specific OCR",
+    "subtitle": "Lightweight CNN-based character recognition system",
+    "tags": ["Python", "OpenCV", "PyTorch", "ONNX Runtime"],
+    "tagColors": ["ta", "tc", "tv", "tr"],
+    "emoji": "🔬",
+    "gradient": "linear-gradient(135deg,#1c0a2e,#44106a,#6d28d9)",
+    "summary": "Lightweight OCR targeting specific fonts (Times New Roman, Arial, Georgia) instead of a heavy general-purpose engine. Pipeline: OpenCV preprocessing segments characters via contour detection, a MobileNetV3-small CNN classifies each crop, then text is reconstructed. Trained on a 50–100K synthetic dataset.",
+    "github": null,
+    "featured": false,
+    "status": "in-development",
+    "detailPage": "projects/ocr-system.html"
+  }
+]

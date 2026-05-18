@@ -1,0 +1,76 @@
+/* ── SKILL BADGES / CATEGORIES ───────────── */
+#skills {
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  position: relative;
+  overflow: hidden;
+  transition: background var(--tr-slow);
+}
+#skills::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right,
+    transparent,
+    color-mix(in srgb, var(--accent) 40%, transparent),
+    transparent);
+}
+#skills::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right,
+    transparent,
+    color-mix(in srgb, var(--accent2) 30%, transparent),
+    transparent);
+}
+
+.sk-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+.sk-header .eyebrow { justify-content: center; }
+.sk-header .eyebrow::before { display: none; }
+.sk-header .aline { margin: 1rem auto 0; }
+
+.sk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.sk-cat {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 2rem;
+  transition: border-color .3s, transform .3s, background var(--tr-slow);
+}
+.sk-cat:hover {
+  border-color: var(--border-h);
+  transform: translateY(-5px);
+}
+.sk-head {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  margin-bottom: 1.75rem;
+}
+.sk-icon {
+  width: 42px; height: 42px;
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.sk-name  { font-size: var(--fs-base); font-weight: 600; }
+.sk-desc  { font-size: var(--fs-xs); color: var(--muted); margin-top: .1rem; }
+
+.sk-row { margin-bottom: 1.1rem; }
+.sk-rh  { display: flex; justify-content: space-between; font-size: var(--fs-sm); margin-bottom: .5rem; }
+.sk-rn  { color: var(--muted); }
+.sk-rp  { font-weight: 600; }
+
+.sk-bar  { height: 4px; background: color-mix(in srgb, var(--muted) 20%, transparent); border-radius: var(--r-full); overflow: hidden; }
+.sk-fill { height: 100%; border-radius: var(--r-full); width: 0; transition: width 1.3s cubic-bezier(.4,0,.2,1); }

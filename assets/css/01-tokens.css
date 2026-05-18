@@ -1,0 +1,43 @@
+/* ── DESIGN TOKENS ───────────────────────── */
+:root {
+  /* Fonts */
+  --f-sans:    'Space Grotesk', sans-serif;
+  --f-display: 'Playfair Display', serif;
+
+  /* Font sizes */
+  --fs-xs:   0.68rem;
+  --fs-sm:   0.82rem;
+  --fs-base: 1rem;
+  --fs-lg:   1.1rem;
+  --fs-xl:   1.25rem;
+  --fs-2xl:  1.6rem;
+
+  /* Spacing (8-pt scale) */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-6:  24px;
+  --sp-8:  32px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-24: 96px;
+
+  /* Radius */
+  --r-sm:   10px;
+  --r-md:   18px;
+  --r-lg:   24px;
+  --r-xl:   32px;
+  --r-full: 9999px;
+
+  /* Transitions */
+  --tr-fast: 150ms ease;
+  --tr-base: 250ms ease;
+  --tr-slow: 450ms ease;
+
+  /* Z-index layers */
+  --z-bg:     0;
+  --z-content:10;
+  --z-nav:    100;
+  --z-cursor: 9999;
+}

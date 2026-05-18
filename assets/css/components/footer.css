@@ -1,0 +1,94 @@
+/* ── CONTACT & FOOTER ────────────────────── */
+#contact {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+.c-orb {
+  position: absolute;
+  width: 600px; height: 600px;
+  background: var(--accent);
+  border-radius: 50%;
+  filter: blur(130px);
+  opacity: .06;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+  transition: background var(--tr-slow);
+}
+.c-label { justify-content: center; }
+.c-label::before { display: none; }
+.c-head {
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -.04em;
+  line-height: 1.05;
+  max-width: 700px;
+  margin: 0 auto 1.5rem;
+}
+.c-sub {
+  font-size: var(--fs-lg);
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto 3.5rem;
+  line-height: 1.75;
+}
+.c-email {
+  display: inline-block;
+  font-size: clamp(1.2rem, 3.5vw, 2rem);
+  font-weight: 600;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 3rem;
+  letter-spacing: -.01em;
+  transition: opacity .2s;
+}
+.c-email:hover { opacity: .75; }
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: .85rem;
+}
+.soc {
+  width: 48px; height: 48px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  cursor: none;
+  transition: all .3s, border-color var(--tr-slow), background var(--tr-slow);
+}
+.soc:hover {
+  border-color: var(--border-h);
+  color: var(--accent-l);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  transform: translateY(-4px);
+}
+
+/* Footer bar */
+.site-footer {
+  padding: 1.75rem 5%;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  position: relative;
+  z-index: var(--z-content);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  transition: background var(--tr-slow), border-color var(--tr-slow);
+}
+.site-footer a { color: var(--accent-l); }
+
+@media (max-width: 680px) {
+  .site-footer { flex-direction: column; gap: .5rem; text-align: center; }
+}
