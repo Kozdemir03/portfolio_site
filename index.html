@@ -64,12 +64,22 @@
   <a href="#hero" class="logo">K.</a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Work</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about"      data-i18n="nav.about">About</a></li>
+      <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+      <li><a href="#skills"     data-i18n="nav.skills">Skills</a></li>
+      <li><a href="#projects"   data-i18n="nav.work">Work</a></li>
+      <li><a href="#contact"    data-i18n="nav.contact">Contact</a></li>
     </ul>
+
+    <!-- Language switcher -->
+    <div class="lang-switcher" id="lang-switcher">
+      <button class="lang-btn" id="lang-switcher-btn" aria-haspopup="true" aria-expanded="false">EN</button>
+      <ul class="lang-menu" role="menu">
+        <li><a href="#" data-lang="en" role="menuitem">🇬🇧 English</a></li>
+        <li><a href="#" data-lang="tr" role="menuitem">🇹🇷 Türkçe</a></li>
+      </ul>
+    </div>
+
     <button class="ttog" id="ttog" aria-label="Toggle theme">☀️</button>
   </div>
 </nav>
@@ -85,28 +95,28 @@
 
   <div class="hero-content">
     <div class="hero-badge">
-      <span class="bdot"></span>Available for opportunities
+      <span class="bdot"></span><span data-i18n="hero.badge">Available for opportunities</span>
     </div>
     <h1 class="hero-name">
-      Hi, I'm<br>
+      <span data-i18n="hero.greeting">Hi, I'm</span><br>
       <span class="gtxt">Kaan Özdemir.</span>
     </h1>
     <div class="hero-role">
       I build <span class="twt" id="tw"></span><span class="cblink"></span>
     </div>
-    <p class="hero-desc">
+    <p class="hero-desc" data-i18n="hero.desc">
       Computer Programming student at İzmir University of Economics — building
       full-stack platforms, AI/CV tools, and mobile games. I care about writing
       clean code that solves real problems.
     </p>
     <div class="hero-ctas">
-      <a href="#projects" class="btn btn--primary">View my work ↓</a>
-      <a href="#contact"  class="btn btn--ghost">Let's talk →</a>
+      <a href="#projects" class="btn btn--primary" data-i18n="hero.cta.work">View my work ↓</a>
+      <a href="#contact"  class="btn btn--ghost"   data-i18n="hero.cta.talk">Let's talk →</a>
     </div>
   </div>
 
   <div class="scr-hint">
-    <span>Scroll</span>
+    <span data-i18n="hero.scroll">Scroll</span>
     <div class="scr-mouse"><div class="scr-wheel"></div></div>
   </div>
 </section>
@@ -134,17 +144,17 @@
 
     <!-- Text side -->
     <div class="about-txt">
-      <div class="eyebrow rv">About me</div>
-      <h2 class="sec-title rv">Building software that actually works.</h2>
+      <div class="eyebrow rv" data-i18n="about.eyebrow">About me</div>
+      <h2 class="sec-title rv" data-i18n="about.title">Building software that actually works.</h2>
       <div class="aline rv"></div>
 
-      <p class="rv">
+      <p class="rv" data-i18n="about.p1">
         I'm a Computer Programming student at İzmir University of Economics with a
         hands-on mindset. I've shipped production-ready software through internships
         and personal projects — ranging from AI-integrated chatbots to full-stack
         reservation platforms and computer-vision tools.
       </p>
-      <p class="rv">
+      <p class="rv" data-i18n="about.p2">
         I speak Turkish (native), English (B2), and French (B1). When I'm not
         coding I'm probably designing a new game mechanic in Unity or optimising
         a dataset pipeline.
@@ -152,16 +162,16 @@
 
       <!-- Stat cards -->
       <div class="stat-grid">
-        <div class="stat-card rv d1"><div class="sn">3+</div><div class="sl">Professional roles</div></div>
-        <div class="stat-card rv d2"><div class="sn">5+</div><div class="sl">Projects shipped</div></div>
-        <div class="stat-card rv d1"><div class="sn">10+</div><div class="sl">Technologies</div></div>
-        <div class="stat-card rv d2"><div class="sn">3</div><div class="sl">Languages spoken</div></div>
+        <div class="stat-card rv d1"><div class="sn">3+</div><div class="sl" data-i18n="about.stat.roles">Professional roles</div></div>
+        <div class="stat-card rv d2"><div class="sn">5+</div><div class="sl" data-i18n="about.stat.projects">Projects shipped</div></div>
+        <div class="stat-card rv d1"><div class="sn">10+</div><div class="sl" data-i18n="about.stat.tech">Technologies</div></div>
+        <div class="stat-card rv d2"><div class="sn">3</div><div class="sl" data-i18n="about.stat.langs">Languages spoken</div></div>
       </div>
 
       <!-- Education & Languages -->
       <div class="about-cols rv">
         <div>
-          <div class="about-col-title">Education</div>
+          <div class="about-col-title" data-i18n="about.edu.title">Education</div>
           <div class="info-row">
             <div class="info-dot"></div>
             <div>
@@ -178,7 +188,7 @@
           </div>
         </div>
         <div>
-          <div class="about-col-title">Languages</div>
+          <div class="about-col-title" data-i18n="about.lang.title">Languages</div>
           <div class="info-row">
             <div class="info-dot"></div>
             <div>
@@ -204,7 +214,15 @@
       </div>
 
       <div class="rv" style="margin-top:2rem">
-        <a href="Kaan_Ozdemir_CV.pdf" target="_blank" class="btn btn--primary">Download CV ↓</a>
+        <div class="cv-dropdown" id="cv-dropdown">
+          <button class="btn btn--primary cv-dropdown-btn" data-i18n="about.cv" aria-expanded="false" aria-haspopup="true">
+            Download CV ↓
+          </button>
+          <ul class="cv-dropdown-menu" role="menu">
+            <li><a href="Kaan_Ozdemir_CV_En.pdf" target="_blank" rel="noopener" role="menuitem" data-i18n="cv.en">In English</a></li>
+            <li><a href="Kaan_Ozdemir_CV_TR.pdf" target="_blank" rel="noopener" role="menuitem" data-i18n="cv.tr">Türkçe</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -214,8 +232,8 @@
      EXPERIENCE
 ════════════════════════════════════════════ -->
 <section id="experience">
-  <div class="eyebrow rv">Career</div>
-  <h2 class="sec-title rv">Experience</h2>
+  <div class="eyebrow rv" data-i18n="exp.eyebrow">Career</div>
+  <h2 class="sec-title rv" data-i18n="exp.title">Experience</h2>
   <div class="aline rv"></div>
 
   <div class="tl-wrap" style="max-width:760px">
@@ -230,8 +248,8 @@
 ════════════════════════════════════════════ -->
 <section id="skills">
   <div class="sk-header">
-    <div class="eyebrow rv">My arsenal</div>
-    <h2 class="sec-title rv">Tech I work with</h2>
+    <div class="eyebrow rv" data-i18n="skills.eyebrow">My arsenal</div>
+    <h2 class="sec-title rv" data-i18n="skills.title">Tech I work with</h2>
     <div class="aline rv"></div>
   </div>
   <!-- Cards injected by skills-loader.js -->
@@ -242,9 +260,9 @@
      PROJECTS
 ════════════════════════════════════════════ -->
 <section id="projects">
-  <div class="eyebrow rv">Selected work</div>
-  <h2 class="sec-title rv">Things I've built.</h2>
-  <p class="proj-sub rv">
+  <div class="eyebrow rv" data-i18n="projects.eyebrow">Selected work</div>
+  <h2 class="sec-title rv" data-i18n="projects.title">Things I've built.</h2>
+  <p class="proj-sub rv" data-i18n="projects.sub">
     A mix of personal projects, freelance work, and internship deliverables —
     each one taught me something new.
   </p>
@@ -257,23 +275,29 @@
 ════════════════════════════════════════════ -->
 <section id="contact">
   <div class="c-orb"></div>
-  <div class="eyebrow c-label rv">Get in touch</div>
-  <h2 class="c-head rv">
+  <div class="eyebrow c-label rv" data-i18n="contact.eyebrow">Get in touch</div>
+  <h2 class="c-head rv" data-i18n-html="contact.title">
     Have a project?<br>Let's build it <span class="gtxt">together.</span>
   </h2>
-  <p class="c-sub rv">
+  <p class="c-sub rv" data-i18n="contact.sub">
     I'm open to internships, collaborations, and full-time opportunities.
     Drop me a message — I respond within 24 hours.
   </p>
-  <a href="mailto:kaanozdemir003@gmail.com" class="c-email rv">
-    kaanozdemir003@gmail.com
+  <a href="mailto:kaanozd03@gmail.com" class="c-email rv">
+    kaanozd03@gmail.com
   </a><br><br>
 
   <div class="socials rv">
     <a href="https://github.com/Kozdemir03" target="_blank" rel="noopener" class="soc" title="GitHub">GH</a>
     <a href="https://linkedin.com/in/kaan-ozdemir-540637389" target="_blank" rel="noopener" class="soc" title="LinkedIn">in</a>
-    <a href="mailto:kaanozdemir003@gmail.com" class="soc" title="Email">@</a>
-    <a href="Kaan_Ozdemir_CV.pdf" target="_blank" class="soc" title="Download CV">CV</a>
+    <a href="mailto:kaanozd03@gmail.com" class="soc" title="Email">@</a>
+    <div class="cv-dropdown cv-dropdown--soc" id="cv-dropdown-soc">
+      <button class="soc cv-dropdown-btn" title="Download CV" aria-expanded="false" aria-haspopup="true">CV</button>
+      <ul class="cv-dropdown-menu" role="menu">
+        <li><a href="Kaan_Ozdemir_CV_En.pdf" target="_blank" rel="noopener" role="menuitem" data-i18n="cv.en">In English</a></li>
+        <li><a href="Kaan_Ozdemir_CV_TR.pdf" target="_blank" rel="noopener" role="menuitem" data-i18n="cv.tr">Türkçe</a></li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -281,8 +305,8 @@
      FOOTER
 ════════════════════════════════════════════ -->
 <footer class="site-footer">
-  <span>© 2025 Kaan Özdemir — Built with vanilla HTML, CSS &amp; JS</span>
-  <span>İzmir, Turkey · <a href="mailto:kaanozdemir003@gmail.com">kaanozdemir003@gmail.com</a></span>
+  <span data-i18n="footer.copy">© 2025 Kaan Özdemir — Built with vanilla HTML, CSS &amp; JS</span>
+  <span><span data-i18n="footer.location">İzmir, Turkey</span> · <a href="mailto:kaanozd03@gmail.com">kaanozd03@gmail.com</a></span>
 </footer>
 
 <!-- JS — ES modules (no build step required) -->

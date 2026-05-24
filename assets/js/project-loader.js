@@ -29,9 +29,14 @@ export async function loadProjects() {
     const tags = (p.tags || []).map((t, i) => `<span class="tag ${p.tagColors?.[i] || 'tv'}">${t}</span>`).join('');
     const devBadge = isDev ? `<div class="dev-badge">⚙ In Development</div>` : '';
 
+    const thumbInner = p.image
+      ? `<img src="${p.image}" alt="${p.title} preview" style="width:100%;height:100%;object-fit:cover;display:block;"
+             onerror="this.parentElement.style.background='${p.gradient}';this.outerHTML='<span style=\\'font-size:3rem\\'>${p.emoji}</span>'">`
+      : `<span style="font-size:${isFeat ? '4' : '3'}rem">${p.emoji}</span>`;
+
     card.innerHTML = `
       <div class="pt">
-        <div class="pti" style="background:${p.gradient};">${p.emoji}</div>
+        <div class="pti" style="background:${p.gradient};">${thumbInner}</div>
         <div class="pov">${overlayBtns}</div>
       </div>
       <div class="pb">

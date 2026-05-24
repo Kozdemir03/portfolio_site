@@ -8,6 +8,7 @@ import { initSwirlCanvas, initHeroCanvas } from './canvas-bg.js';
 import { loadProjects }    from './project-loader.js';
 import { loadExperience }  from './experience-loader.js';
 import { loadSkills }      from './skills-loader.js';
+import { initI18n }        from './i18n.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   initTheme();
@@ -26,4 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Scroll reveal must run after dynamic content is injected
   initScrollReveal();
+
+  // i18n — must run last so all DOM nodes exist
+  initI18n();
 });

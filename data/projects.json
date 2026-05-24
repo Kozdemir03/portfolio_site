@@ -1,12 +1,13 @@
 [
   {
     "id": "handmouse",
-    "title": "HandMouse",
-    "subtitle": "Hands-free mouse control via webcam",
+    "title": "Mouse-HandTracking",
+    "subtitle": "Hands-free mouse control via webcam hand tracking",
     "tags": ["Python", "MediaPipe", "OpenCV", "PyAutoGUI"],
     "tagColors": ["ta", "tv", "tc", "tg"],
     "emoji": "🖱️",
     "gradient": "linear-gradient(135deg,#1e3a2f,#14532d,#166534)",
+    "image": "assets/img/{projects}/handmouse.png",
     "summary": "Real-time hand-gesture mouse control via webcam. Cursor movement, clicks, and scroll are mapped to hand landmarks. Features a system tray app with Windows startup Registry integration and a one-click installer with live camera preview UI.",
     "github": "https://github.com/Kozdemir03/handmouse",
     "featured": true,
@@ -17,6 +18,7 @@
     "id": "perfect-circle",
     "title": "Perfect Circle",
     "subtitle": "Browser game — how close to perfect can you draw?",
+    "image": "assets/img/{projects}/perfect-circle.png",
     "tags": ["HTML5", "JavaScript", "Canvas API", "Chart.js"],
     "tagColors": ["tc", "ta", "tv", "tg"],
     "emoji": "⭕",
@@ -39,6 +41,7 @@
     "github": "https://github.com/Kozdemir03",
     "featured": false,
     "status": "released",
+    "noFiles": true,
     "detailPage": "projects/kampyeri.html"
   },
   {
